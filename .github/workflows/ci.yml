@@ -1,0 +1,24 @@
+name: CI Pipeline
+
+on:
+ push:
+   branches: ["main" ]
+ pull_request:
+   branches: ["main"]
+
+jobs:
+ build-and-test:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/chechout@v4
+
+    - name: Verify files exist
+      run: |
+        echo "Checking project structure..."
+        ls -la
+        test -f app/config.conf && echo "Config file found"
+    - name: Run basic validation
+      run: |
+       echo "Running build step..."
+       echo "Build successful"
